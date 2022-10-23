@@ -206,3 +206,11 @@
   \end{center}
   \thispagestyle{empty}
 }
+
+% Support large landscape tables
+\RequirePackage{pdflscape}
+\newenvironment{landscapepage}[1][1in]{%
+  \newgeometry{margin=#1}%
+  \begin{landscape}}{%
+  \end{landscape}%
+  \restoregeometry}

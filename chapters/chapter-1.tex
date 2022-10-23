@@ -262,6 +262,46 @@ If you are using R to generate tables, there are two good options. The
 \texttt{kable()} function can also output \LaTeX\ tables from data frames, and
 the \texttt{booktabs = TRUE} option will make it use booktabs.
 
+\section{Jumbo-sized figures and tables}
+
+If you have a figure or table that does not fit in a normal-sized page, such as
+a very wide table with many columns, you can create a landscape page. The
+landscape page is rotated (11 inches wide and 8.5 inches tall, instead of the
+reverse), so wide things fit in it.
+
+The \verb|landscapepage| environment does this. Simply place your figure or
+table environment inside a \verb|landscapepage| environment and it will appear
+on its own page, in landscape. See Table~\ref{jumbo-table} for an example. The
+table will be correctly rotated in PDF readers, so it's easy to read on screen,
+but will print out correctly on ordinary paper.
+
+By default, the landscape page will have 1-inch margins. You can adjust this
+with an optional argument to the environment, e.g.\ here the margins will be 1
+cm:
+\begin{verbatim}
+\begin{landscapepage}[1cm]
+  \begin{table}
+    ...
+  \end{table}
+\end{landscapepage}
+\end{verbatim}
+You should leave at least \emph{some} margin, since most printers cannot print
+all the way to the edge of the page.
+
+\begin{landscapepage}
+  \begin{table}
+    \centering
+    \begin{tabular}{l r}\toprule
+      Foo & Bar \\\midrule
+      A & 1.2\\
+      B & 2.3\\\bottomrule
+    \end{tabular}
+    \caption[Demonstration extra-wide table]{A table that's too big to fit on a
+      standard-sized page.}
+    \label{jumbo-table}
+  \end{table}
+\end{landscapepage}
+
 \section{Special characters}
 
 Versions of \LaTeX\ installed since 2019 automatically support UTF-8 characters
