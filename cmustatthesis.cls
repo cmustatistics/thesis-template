@@ -1,13 +1,29 @@
 % CMU Statistics & Data Science thesis, building on memoir
-% Alex Reinhart, 2022
+% Alex Reinhart, 2023
 % Based on work by Heidi Sestrich building on a template by Tony Saad.
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{cmustatthesis}[2022/08/03 cmustatthesis]
+\ProvidesClass{cmustatthesis}[2023/04/13 cmustatthesis]
+
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=statthesis,prefix=statthesis@}
+
+\DeclareBoolOption{printing}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{memoir}}
 
 \ProcessOptions
+\ProcessKeyvalOptions{statthesis}
+
+\ifstatthesis@printing
+  % If printing to produce a bound copy, use twoside printing so chapters always
+  % start on the right, and disable hyperref's colored links
+  \PassOptionsToClass{twoside}{memoir}
+  \PassOptionsToPackage{hidelinks}{hyperref}
+\else
+  % For screen use, omit the blank pages and keep colored links
+  \PassOptionsToClass{oneside}{memoir}
+\fi
 
 \LoadClass[11pt]{memoir}
 
@@ -44,9 +60,6 @@
 \RequirePackage{microtype}
 \RequirePackage[hyphens,obeyspaces]{url}
 
-% Note: Change to \RequirePackage[pdfa,final,hidelinks]{hyperref} for printing
-% in B&W, to avoid unsightly boxes (or to avoid paying for color pages if
-% buying a printed copy)
 \RequirePackage[pdfa,final]{hyperref}
 
 \RequirePackage[final]{graphicx}

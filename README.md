@@ -17,3 +17,22 @@ To use this template, you can either:
 
 Once you have the template on your computer, open `thesis.tex` and follow the
 instructions inside.
+
+## Thesis options
+
+The first line of `thesis.tex` gives the options for the class.
+
+```latex
+\documentclass[draft]{cmustatthesis}
+```
+
+Options are separated by commas. Two are important:
+
+- `draft`: Marks the thesis with a draft notice giving the date. This is useful
+  so that if you share drafts with your advisor or committee as you revise, they
+  know which version they're reviewing.
+- `printing`: If you want a printed and bound copy of your thesis, use the
+  `printing` option. This makes a PDF where colored links are disabled (since
+  they don't print well), and ensures each new chapter starts on the right-hand
+  side. Margins are also adjusted so the document will be easy to read when
+  printed and bound.
