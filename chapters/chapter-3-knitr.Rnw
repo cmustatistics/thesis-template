@@ -1,0 +1,72 @@
+\chapter{Embedding Code and Results with Knitr}
+
+The \href{https://yihui.org/knitr/}{knitr package} supports embedding R code
+into documents. You may be familiar with it for R Markdown, which lets you embed
+R code into a Markdown document, but it also supports embedding code in \LaTeX.
+
+\section{Code chunks}
+
+Code chunks are introduced with a special angle bracket syntax:
+
+<<name-of-chunk, warning=FALSE>>=
+foo <- 2 + 2
+foo
+@
+
+Notice that the R code and its output are both printed in the PDF. You can
+provide a chunk name as the first argument, followed by chunk options; here, the
+\texttt{warning=FALSE} option tells knitr not to print any R warning messages in
+the document. Code chunks are all run in one R session, so later code chunks can
+refer to earlier ones:
+
+<<>>=
+foo * 3
+@
+
+Chunk options can also be written as comments in the code, which is useful when
+we're writing figures. Figure~\ref{fig:car-plot} is one example.
+
+<<car-plot>>=
+#| echo: FALSE
+#| fig.width: 5
+#| fig.height: 3.5
+#| fig.cap: "A very important plot of very important data."
+
+plot(qsec ~ hp, data = mtcars)
+@
+
+By choosing \texttt{echo=FALSE}, we ensured the code is not printed. The other
+options set the figure size and caption. Many other options are available and
+documented on the \href{https://yihui.org/knitr/options/}{knitr chunk options
+  page}.
+
+Notice we can refer to this figure by number by using Figure~\ref{fig:car-plot},
+so we simply append \texttt{fig:} to the chunk name.
+
+You may embed any number of code chunks generating plots. You can also create
+tables. The \href{https://gt.rstudio.com/}{gt package}, for instance, can
+generate tables with complex formatting and put them in \LaTeX\ format.
+
+\subsection{Code that runs slowly}
+
+If a particular code chunk takes a long time to run (because it contains a
+simulation, for instance), set the \texttt{cache} option to \texttt{TRUE}. knitr
+will then cache the output and only re-run the code if you change it.
+
+It's a good idea not to call \texttt{library()} in chunks you cache, as knitr is
+not smart enough to load the package when the chunk was cached.
+
+\subsection{Paths and working directories}
+
+When knitr executes a particular Rnw file, the working directory is set to the
+directory containing that file. For instance, code in this file has its working
+directory set to the \texttt{chapters/} folder containing it:
+
+<<>>=
+getwd()
+@
+
+So if you store your data or other inputs elsewhere, you might need to adjust
+the paths you use to load them. For instance, if you create a \texttt{data/}
+folder in the thesis directory that also contains \texttt{chapters/}, you can
+load data by referring to \texttt{../data/some-data-file.csv}.
