@@ -163,7 +163,7 @@
   \end{center}
   \vspace{1cm}
   \begin{center}
-    \includegraphics[width=3in]{cmu-wordmark-horizontal-r}
+    \includegraphics[width=3in,alt={Carnegie Mellon wordmark}]{cmu-wordmark-horizontal-r}
   \end{center}
 }
 % memoir automatically sets title pages to the title pagestyle, which includes a
