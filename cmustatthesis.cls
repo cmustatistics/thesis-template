@@ -107,8 +107,7 @@
     bookmarksnumbered=true,
     pdftitle={\thetitle},
     pdfauthor={\theauthor},
-    pdfsubject={\thedepartment, Carnegie Mellon University},
-    bookmarksopen=False
+    pdfsubject={\thedepartment, Carnegie Mellon University}
   }
 }
 
